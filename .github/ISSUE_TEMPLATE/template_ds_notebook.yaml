@@ -1,0 +1,29 @@
+name: Datascience Notebook
+description: Create a Jypzter notebook repository
+title: "[CODE]: "
+labels: ["template", "datascience", "notebook"]
+# assignees:
+#   - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Just a few more questions to your repository
+  - type: dropdown
+    id: team
+    attributes:
+      label: Team
+      description: Which team is this for?
+      options:
+        - acme
+        - bugs
+        - bunny
+    validations:
+      required: true
+  - type: checkboxes
+    id: publish
+    attributes:
+      label: Publish to GitHub
+      description: Push the generated content to GitHub and set permissions
+      options:
+        - label: Create repository on GH
