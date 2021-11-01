@@ -31,7 +31,7 @@ jobs:
             const prefix = data.code || data.team;
             data.repo_name = prefix + "-" + data.name;
             data.publish = Object.values(data.publish)[0];
-            data.labels = ${{ github.event.issue.labels.*.name }};
+            data.labels = ${{ toJSON(github.event.issue.labels.*.name) }};
             return data;
 
       - name: Show processes data JSON
