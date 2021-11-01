@@ -40,7 +40,7 @@ jobs:
 
   publish:
     needs: [template]
-    if: needs.template.outputs.data.publish
+    if: fromJSON(needs.template.outputs.data).publish
     runs-on: ubuntu-latest
 
     steps:
