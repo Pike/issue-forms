@@ -2,7 +2,7 @@ name: Greetings
 
 on:
   issues:
-    types: [opened]
+    types: [opened,reopened]
 
 jobs:
   greeting:

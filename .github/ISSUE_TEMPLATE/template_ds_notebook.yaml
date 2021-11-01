@@ -12,7 +12,7 @@ body:
   - type: dropdown
     id: team
     attributes:
-      label: Team<!---team-->
+      label: Team _(team)_
       description: Which team is this for?
       options:
         - acme
@@ -20,11 +20,10 @@ body:
         - bunny
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
     id: publish
     attributes:
-      label: Publish to GitHub<!---publish-->
+      label: Publish to GitHub _(publish)_
       description: Push the generated content to GitHub and set permissions
       options:
-        - download
-        - publish
+        - label: Create repository on GH
