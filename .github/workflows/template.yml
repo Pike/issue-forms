@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+    outputs:
+      data: ${{ steps.data.outputs.result }}
     steps:
       - name: Run Issue form parser
         id: parse
@@ -28,9 +30,19 @@ jobs:
             const data = ${{ steps.parse.outputs.payload }};
             const prefix = data.code || data.team;
             data.repo_name = prefix + "-" + data.name;
-            data.publish = Object.values(data.publish)[0]
+            data.publish = Object.values(data.publish)[0];
+            data.labels = ${{ github.event.issue.labels.*.name }};
             return data;
 
       - name: Show processes data JSON
         run: |
           echo '${{ steps.data.outputs.result }}'
+
+  publish:
+    needs: [template]
+    if: needs.template.outputs.data.publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo
+        run: echo 'I would publish with ${{ needs.template.outputs.data }}'
