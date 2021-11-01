@@ -1,11 +1,12 @@
-name: Greetings
+name: Template
 
 on:
   issues:
     types: [opened,reopened]
 
 jobs:
-  greeting:
+  template:
+    if: contains(github.event.issue.labels.*.name, "template")
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -19,6 +20,16 @@ jobs:
           label_marker_start: '_\('
           label_marker_end: '\)_'
 
-      - name: Show parsed data JSON
+      - name: Transform input
+        id: data
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const data = steps.parse.outputs.payload;
+            const prefix = data.code || data.team;
+            data.repo_name = prefix + "-" + data.name;
+            return data;
+
+      - name: Show processes data JSON
         run: |
-          echo '${{ steps.parse.outputs.payload }}'
+          echo '${{ steps.data.outputs.result }}'

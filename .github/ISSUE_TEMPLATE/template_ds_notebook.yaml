@@ -1,5 +1,5 @@
 name: Datascience Notebook
-description: Create a Jypzter notebook repository
+description: Create a Jypiter notebook repository
 title: "[CODE]: "
 labels: ["template", "datascience", "notebook"]
 # assignees:
@@ -20,6 +20,16 @@ body:
         - bunny
     validations:
       required: true
+  - type: input
+    id: code
+    attributes:
+      label: Code _(code)_
+      description: Enter code if existing
+  - type: input
+    id: name
+    attributes:
+      label: Name _(name)_
+      description: Name to use as part of repository
   - type: checkboxes
     id: publish
     attributes:
