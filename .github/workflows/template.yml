@@ -25,7 +25,7 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            const data = steps.parse.outputs.payload;
+            const data = JSON.parse(${{ steps.parse.outputs.payload }});
             const prefix = data.code || data.team;
             data.repo_name = prefix + "-" + data.name;
             return data;
